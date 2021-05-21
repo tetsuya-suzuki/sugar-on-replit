@@ -5,7 +5,7 @@
 1. Create your new repl on Repl.it by importing this repository.
 2. Invoke `make` in the console window or click the "Run" button.
 
-    > make
+        > make
 
 ## How to use the Sugar solver
 
