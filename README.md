@@ -19,6 +19,6 @@ You can use the Sugar solver in the console window as follows.
     a x4    3
     a
 
-## links
+## Links
 * [Sugar: a SAT-based Constraint Solver](https://cspsat.gitlab.io/sugar/)
 * [Replit](http://replit.com/)
