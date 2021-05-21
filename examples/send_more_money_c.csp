@@ -1,0 +1,29 @@
+; SEND+MORE=MONEY
+;
+;   SEND
+; + MORE
+; ------
+;  MONEY
+
+; Variables
+(int S 1 9)
+(int E 0 9)
+(int N 0 9)
+(int D 0 9)
+(int M 1 9)
+(int O 0 9)
+(int R 0 9)
+(int Y 0 9)
+(int C1 0 1)
+(int C2 0 1)
+(int C3 0 1)
+(int C4 0 1)
+
+; Constraints
+(eq (+ D E) (+ (* 10 C1) Y))
+(eq (+ C1 N R) (+ (* 10 C2) E))
+(eq (+ C2 E O) (+ (* 10 C3) N))
+(eq (+ C3 S M) (+ (* 10 C4) O))
+(eq C4 M)
+
+(alldifferent S E N D M O R Y)

@@ -1,0 +1,81 @@
+; Sudoku
+; +------------+-------------+-------------+
+; | 5   3      |      7      |             |
+; | 6          |  1   9   5  |             |
+; |     9   8  |             |      6      |
+; +------------+-------------+-------------+
+; | 8          |      6      |          3  |
+; | 4          |  8       3  |          1  |
+; | 7          |      2      |          6  |
+; +------------+-------------+-------------+
+; |     6      |             |  2   8      |
+; |            |  4   1   9  |          5  |
+; |            |      8      |      7   9  |
+; +------------+-------------+-------------+
+;
+; Cited from https://en.wikipedia.org/wiki/Sudoku  (Accessed May 21, 2021)
+;
+
+; Variables
+; +------------+-------------+-------------+
+; |x00 x01 x02 | x03 x04 x05 | x06 x07 x08 |
+; |x10 x11 x12 | x13 x14 x15 | x16 x17 x18 |
+; |x20 x21 x22 | x23 x24 x25 | x26 x27 x28 |
+; +------------+-------------+-------------+
+; |x30 x31 x32 | x33 x34 x35 | x36 x37 x38 |
+; |x40 x41 x42 | x43 x44 x45 | x46 x47 x48 |
+; |x50 x51 x52 | x53 x54 x55 | x56 x57 x58 |
+; +------------+-------------+-------------+
+; |x60 x61 x62 | x63 x64 x65 | x66 x67 x68 |
+; |x70 x71 x72 | x73 x74 x75 | x76 x77 x78 |
+; |x80 x81 x82 | x83 x84 x85 | x86 x87 x88 |
+; +------------+-------------+-------------+
+
+
+(domain d 1 9)
+
+
+(int x00 5) (int x01 3) (int x02 d) (int x03 d) (int x04 7) (int x05 d) (int x06 d) (int x07 d) (int x08 d)
+(int x10 6) (int x11 d) (int x12 d) (int x13 1) (int x14 9) (int x15 5) (int x16 d) (int x17 d) (int x18 d)
+(int x20 d) (int x21 9) (int x22 8) (int x23 d) (int x24 d) (int x25 d) (int x26 d) (int x27 6) (int x28 d)
+
+(int x30 8) (int x31 d) (int x32 d) (int x33 d) (int x34 6) (int x35 d) (int x36 d) (int x37 d) (int x38 3)
+(int x40 4) (int x41 d) (int x42 d) (int x43 8) (int x44 d) (int x45 3) (int x46 d) (int x47 d) (int x48 1)
+(int x50 7) (int x51 d) (int x52 d) (int x53 d) (int x54 2) (int x55 d) (int x56 d) (int x57 d) (int x58 6)
+
+(int x60 d) (int x61 6) (int x62 d) (int x63 d) (int x64 d) (int x65 d) (int x66 2) (int x67 8) (int x68 d) 
+(int x70 d) (int x71 d) (int x72 d) (int x73 4) (int x74 1) (int x75 9) (int x76 d) (int x77 d) (int x78 5)
+(int x80 d) (int x81 d) (int x82 d) (int x83 d) (int x84 8) (int x85 d) (int x86 d) (int x87 7) (int x88 9)
+
+; row
+(alldifferent x00 x01 x02 x03 x04 x05 x06 x07 x08)
+(alldifferent x10 x11 x12 x13 x14 x15 x16 x17 x18)
+(alldifferent x20 x21 x22 x23 x24 x25 x26 x27 x28)
+(alldifferent x30 x31 x32 x33 x34 x35 x36 x37 x38)
+(alldifferent x40 x41 x42 x43 x44 x45 x46 x47 x48)
+(alldifferent x50 x51 x52 x53 x54 x55 x56 x57 x58)
+(alldifferent x60 x61 x62 x63 x64 x65 x66 x67 x68)
+(alldifferent x70 x71 x72 x73 x74 x75 x76 x77 x78)
+(alldifferent x80 x81 x82 x83 x84 x85 x86 x87 x88)
+
+; column
+(alldifferent x00 x10 x20 x30 x40 x50 x60 x70 x80)
+(alldifferent x01 x11 x21 x31 x41 x51 x61 x71 x81)
+(alldifferent x02 x12 x22 x32 x42 x52 x62 x72 x82)
+(alldifferent x03 x13 x23 x33 x43 x53 x63 x73 x83)
+(alldifferent x04 x14 x24 x34 x44 x54 x64 x74 x84)
+(alldifferent x05 x15 x25 x35 x45 x55 x65 x75 x85)
+(alldifferent x06 x16 x26 x36 x46 x56 x66 x76 x86)
+(alldifferent x07 x17 x27 x37 x47 x57 x67 x77 x87)
+(alldifferent x08 x18 x28 x38 x48 x58 x68 x78 x88)
+
+; block
+(alldifferent x00 x01 x02 x10 x11 x12 x20 x21 x22)
+(alldifferent x03 x04 x05 x13 x14 x15 x23 x24 x25)
+(alldifferent x06 x07 x08 x16 x17 x18 x26 x27 x28)
+(alldifferent x30 x31 x32 x40 x41 x42 x50 x51 x52)
+(alldifferent x33 x34 x35 x43 x44 x45 x53 x54 x55)
+(alldifferent x36 x37 x38 x46 x47 x48 x56 x57 x58)
+(alldifferent x60 x61 x62 x70 x71 x72 x80 x81 x82)
+(alldifferent x63 x64 x65 x73 x74 x75 x83 x84 x85)
+(alldifferent x66 x67 x68 x76 x77 x78 x86 x87 x88)
