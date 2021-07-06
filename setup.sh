@@ -3,6 +3,7 @@
 REPL_DIR=$(cd $(dirname $0); pwd)
 BIN_DIR=${REPL_DIR}/bin
 SUGAR_SCRIPT=${REPL_DIR}/sugar
+MINISAT_SCRIPT=${REPL_DIR}/minisat
 
 pushd ${REPL_DIR}
 
@@ -10,9 +11,12 @@ pushd ${REPL_DIR}
 rm -r ${BIN_DIR}
 mkdir ${BIN_DIR}
 
-# wrapper script  
+# wrapper scripts  
 sed -e "s|_BIN_DIR_|${BIN_DIR}|" src/sugar.tmpl > ${SUGAR_SCRIPT}
 chmod +x ${SUGAR_SCRIPT}
+
+sed -e "s|_BIN_DIR_|${BIN_DIR}|" src/minisat.tmpl > ${MINISAT_SCRIPT}
+chmod +x ${MINISAT_SCRIPT}
 
 # patch file  
 sed -e "s|_BIN_DIR_|${BIN_DIR}|" src/sugar.diff.tmpl > src/sugar.diff
